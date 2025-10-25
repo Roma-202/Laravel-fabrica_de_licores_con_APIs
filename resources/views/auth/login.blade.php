@@ -31,7 +31,7 @@
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
+                            {{-- <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
@@ -41,6 +41,20 @@
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div> --}}
+                            {{-- Username --}}
+                            <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }} mb-3">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                                    </div>
+                                    <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('Username or Email') }}" type="text" name="username" value="{{ old('username') }}" required autofocus  autocomplete="username">
+                                </div>
+                                @if ($errors->has('username'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
                             </div>

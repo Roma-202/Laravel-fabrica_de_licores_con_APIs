@@ -1,4 +1,4 @@
-<div class="header py-7 py-lg-6 position-relative overflow-hidden">
+{{-- <div class="header py-7 py-lg-6 position-relative overflow-hidden">
     <div class="container position-relative" style="z-index: 2;">
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
@@ -54,15 +54,10 @@
             transform: translateX(-100%);
         }
     }
-</style>
+</style> --}}
 
 
-
-
-
-
-{{-- CODIGO ORIGINAL: --}}
-{{-- <div class="header bg-gradient-primary py-7 py-lg-6">
+<div class="header bg-gradient-primary py-7 py-lg-6">
     <div class="container">
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
@@ -77,4 +72,4 @@
             <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
         </svg>
     </div>
-</div>  --}}
+</div>  

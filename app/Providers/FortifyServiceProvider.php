@@ -13,6 +13,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -51,6 +54,17 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::verifyEmailView(function () {
             return view('auth.verify');
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->username)
+            ->orWhere('username', $request->username)
+            ->first();
+    
+            if ($user &&
+                Hash::check($request->password, $user->password)) {
+                return $user;
+            }
         });
 
         RateLimiter::for('login', function (Request $request) {

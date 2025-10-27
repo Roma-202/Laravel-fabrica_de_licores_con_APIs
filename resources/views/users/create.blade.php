@@ -1,11 +1,20 @@
-@extends('layouts.main', ['title' => __('User Profile')])
+@extends('layouts.main', ['title' => __('Crear usuario')])
 
 @section('content')
-    @include('users.partials.header', [
-        'title' => __('Hola!') . ' '. auth()->user()->name,
-        'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
-        'class' => 'col-lg-7'
-    ])   
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+        style="background-image: url({{ asset('/img/theme/usuarios-editar-agregar.jpg') }}); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+            <div class="row">
+                <div class="col-md-12 {{ $class ?? '' }}">
+                    <h2 class="display-2 text-white">Usuarios</h2>
+                        <p class="text-white mt-0 mb-5">Creacion de un nuevo usuario</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid mt--7">
         <div class="row">

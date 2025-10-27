@@ -20,9 +20,7 @@
         <div class="row">
             <div class="col">
                 <div class="card shadow">
-
-                    
-                    
+                
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
@@ -62,9 +60,14 @@
                                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
                                             
-                                            <button type="button" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar a este usuario?')">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

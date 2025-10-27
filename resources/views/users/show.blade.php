@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
         style="background-image: url({{ asset('/img/theme/usuarios-ver.jpg') }}); background-size: cover; background-position: center top;">
         <!-- Mask -->
@@ -13,10 +12,18 @@
                 <div class="col-md-12 {{ $class ?? '' }}">
                     <h2 class="display-2 text-white">Usuarios</h2>
                         <p class="text-white mt-0 mb-5">Vista detallada del usuario {{ $user->name }}</p>
+                            {{-- Mensaje de exito de ingreso de un nuevo usuario --}}
+                    @if (session('success'))
+                        <div class="alert alert-success" role="success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+                    
+                    
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">

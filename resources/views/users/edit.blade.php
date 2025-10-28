@@ -34,12 +34,13 @@
 {{-- 
                             <h6 class="heading-small text-muted mb-4">{{ __('Editar Datos:') }}</h6> --}}
 
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('status') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             @endif
 
@@ -47,38 +48,38 @@
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="name">{{ __('Nombre') }}</label>
-                                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" required autofocus>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{old('name', $user->name) }}" autofocus>
 
-                                    {{-- @if ($errors->has('name'))
+                                    @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('name') }}</strong>
                                         </span>
-                                    @endif --}}
+                                    @endif
                                 </div>
 
                                 <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="username">{{ __('Nombre de usuario') }}</label>
                                     <input type="text" name="username" id="username"
                                         class="form-control"
-                                        value="{{ $user->username }}"  autofocus>
+                                        value="{{ old('username', $user->username) }}"  autofocus>
 
-                                    {{-- @if ($errors->has('name'))
+                                    @if ($errors->has('username'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('username') }}</strong>
                                         </span>
-                                    @endif --}}
+                                    @endif
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="email">{{ __('Email') }}</label>
                                     <input type="email" name="email" id="email"
                                         class="form-control"
-                                        value="{{ $user->email }}" >
+                                        value="{{ old('email',$user->email) }}" >
 
-                                    {{-- @if ($errors->has('email'))
+                                    @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
-                                    @endif --}}
+                                    @endif
                                 </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
@@ -86,11 +87,11 @@
                                     <input type="password" name="password" id="password"
                                         class="form-control" placeholder="Ingresa solo si es necesario">
 
-                                    {{-- @if ($errors->has('password'))
+                                    @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                    @endif --}}
+                                    @endif
                                 </div>
 
                                 <div class="text-center">

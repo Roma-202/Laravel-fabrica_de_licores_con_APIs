@@ -7,7 +7,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('img/brand/blue.png') }}" alt="..." class="navbar-brand-img">
+            <img src="{{ asset('img/brand/logo-partyFuel.png') }}" alt="..." class="navbar-brand-img">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">

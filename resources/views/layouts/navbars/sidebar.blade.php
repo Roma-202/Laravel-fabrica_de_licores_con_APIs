@@ -104,12 +104,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">
+                                <a class="nav-link" href="{{ route('permissions.index') }}">
                                     <i class="ni ni-badge text-blue"></i> {{ __('Roles') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">
+                                <a class="nav-link" href="{{ route('permissions.index') }}">
                                     <i class="fas fa-list text-blue"></i> {{ __('Permisos') }}
                                     
                                 </a>
@@ -133,7 +133,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-tag text-pink"></i> {{ __('Register') }}
+                        <i class="ni ni-tag text-pink"></i> {{ __('Post') }}
                     </a>
                 </li>
             </ul>

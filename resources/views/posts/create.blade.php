@@ -9,8 +9,8 @@
         <div class="container-fluid d-flex align-items-center">
             <div class="row">
                 <div class="col-md-12 {{ $class ?? '' }}">
-                    <h2 class="display-2 text-white">Permisos</h2>
-                        <p class="text-white mt-0 mb-5">Creacion de un nuevo permiso</p>
+                    <h2 class="display-2 text-white">Posts</h2>
+                        <p class="text-white mt-0 mb-5">Creacion de un nuevo post</p>
                 </div>
             </div>
         </div>
@@ -23,11 +23,11 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <h3 class="mb-0">{{ __('Permisos') }}</h3>
+                            <h3 class="mb-0">{{ __('Post') }}</h3>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('permissions.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('posts.store') }}" autocomplete="off">
                             @csrf
                              {{-- @method('post') --}}
 
@@ -37,7 +37,7 @@
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="name">{{ __('Nombre del') }}</label>
-                                    <input type="text" name="name" id="name" class="form-control form-control-alternative" placeholder="{{ __('Ingrese el nombre del permiso') }}" autofocus>
+                                    <input type="text" name="name" id="name" class="form-control form-control-alternative" placeholder="{{ __('Ingrese el nombre del post') }}" autofocus>
                                 </div>
 
                                 <div class="text-center">

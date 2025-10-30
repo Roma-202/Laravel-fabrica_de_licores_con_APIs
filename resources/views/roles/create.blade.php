@@ -26,19 +26,55 @@
                             <h3 class="mb-0">{{ __('Roles') }}</h3>
                         </div>
                     </div>
+
+                    {{-- Body --}}
                     <div class="card-body">
                         <form method="post" action="{{ route('roles.store') }}" autocomplete="off">
                             @csrf
                              {{-- @method('post') --}}
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Ingrese Datos:') }}</h6>
-
-
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="name">{{ __('Nombre del Rol') }}</label>
                                     <input type="text" name="name" id="name" class="form-control form-control-alternative" placeholder="{{ __('Ingrese el nombre del rol') }}" autofocus>
                                 </div>
+                                <div class="form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="name">{{ __('Permisos') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            @foreach ($permissions as $id => $permission)
+                                                                
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-check">
+                                                                        <div class="custom-control custom-checkbox mb-3">
+                                                                        <input class="custom-control-input" id="customCheck5" name="permissions[]" type="checkbox" value="{{ $id }}">
+                                                                        <label class="custom-control-label" for="customCheck5"></label>
+                                                                        
+                                                                        {{-- <input type="checkbox" class="form-check-input custom-control-input"> --}}
+                                                                        {{-- OJO ---- Cuando le quito el formato a la clase (class="") si funciona pero se queda sin formato css --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $permission }}</td>
+                                                            </tr>
+
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
@@ -46,7 +82,11 @@
                             </div>
                         </form>
 
+
+
                     </div>
+                    {{-- End Body --}}
+
                 </div>
             </div>
         </div>

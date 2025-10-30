@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => __('Editar Permiso')])
+@extends('layouts.main', ['title' => __('Editar Post')])
 
 @section('content')
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
@@ -9,8 +9,8 @@
         <div class="container-fluid d-flex align-items-center">
             <div class="row">
                 <div class="col-md-12 {{ $class ?? '' }}">
-                    <h2 class="display-2 text-white">Permisos</h2>
-                        <p class="text-white mt-0 mb-5">Editar la informacion del permiso</p>
+                    <h2 class="display-2 text-white">Posts</h2>
+                        <p class="text-white mt-0 mb-5">Editar la informacion del post</p>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('permissions.update', $permission->id) }}" autocomplete="off">
+                        <form method="post" action="{{ route('posts.update', $post->id) }}" autocomplete="off">
                             @csrf
                             @method('PUT')
 
@@ -37,7 +37,7 @@
                                     <label class="form-control-label" for="name">{{ __('Nombre') }}</label>
                                     <input type="text" name="name" id="name" 
                                         class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" 
-                                        value="{{old('name', $permission->name) }}" autofocus>
+                                        value="{{old('name', $post->name) }}" autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">

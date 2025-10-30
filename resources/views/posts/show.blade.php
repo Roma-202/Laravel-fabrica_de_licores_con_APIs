@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => __('Detalles del permiso')])
+@extends('layouts.main', ['title' => __('Detalles del Post')])
 
 @section('content')
 
@@ -10,8 +10,8 @@
         <div class="container-fluid d-flex align-items-center">
             <div class="row">
                 <div class="col-md-12 {{ $class ?? '' }}">
-                    <h2 class="display-2 text-white">Permisos</h2>
-                        <p class="text-white mt-0 mb-5">Vista detallada del permiso {{ $permission->name }}</p>
+                    <h2 class="display-2 text-white">Posts</h2>
+                        <p class="text-white mt-0 mb-5">Vista detallada del post {{ $post->name }}</p>
 
                 </div>
             </div>
@@ -33,9 +33,9 @@
 
                     <div class="card-body text-center" style="padding-top: 10rem;">
                         <div class="mb-3">
-                            <h3 class="mb-2">{{ $permission->name }}</h3>
-                            <div class="text-muted mb-1">{{ $permission->guard_name }}</div>
-                            <small class="text-muted">{{ $permission->created_at->format('d/m/Y') }}</small>
+                            <h3 class="mb-2">{{ $post->name }}</h3>
+                            <div class="text-muted mb-1">{{ $post->guard_name }}</div>
+                            <small class="text-muted">{{ $post->created_at->format('d/m/Y') }}</small>
                         </div>
                         
                         <hr class="my-4" />
@@ -44,7 +44,7 @@
 
                         <div class="d-flex justify-content-center">
                             {{-- <button type="button" class="btn btn-primary">Editar</button> --}}
-                            <a href="{{ route('permissions.index') }}" class="btn btn-m btn-success mr-3">Volver</a>
+                            <a href="{{ route('posts.index') }}" class="btn btn-m btn-success mr-3">Volver</a>
                             <a href="#" class="btn btn-m btn-primary mr-3">Editar</a>
                         </div>
                     </div>

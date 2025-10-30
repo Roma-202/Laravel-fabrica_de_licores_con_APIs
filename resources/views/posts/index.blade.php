@@ -9,8 +9,8 @@
         <div class="container-fluid d-flex align-items-center">
             <div class="row">
                 <div class="col-md-12 {{ $class ?? '' }}">
-                    <h2 class="display-2 text-white">Permisos</h2>
-                        <p class="text-white mt-0 mb-5">Permisos Registrados</p>
+                    <h2 class="display-2 text-white">Posts</h2>
+                        <p class="text-white mt-0 mb-5">Posts Registrados</p>
                 </div>
             </div>
         </div>
@@ -24,10 +24,10 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Usuarios</h3>
+                                <h3 class="mb-0">Posts</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-primary">Añadir Permiso</a>
+                                <a href="{{ route('posts.create') }}" class="btn btn-sm btn-primary">Añadir Post</a>
                             </div>
                         </div>
                     </div>
@@ -42,17 +42,17 @@
                                 <th class="text-right">Acciones</th>
                             </thead>
                             <tbody>
-                                @forelse ($permissions as $permission)
+                                @forelse ($posts as $post)
                                     <tr>
-                                        <td>{{ $permission->id }}</td>
-                                        <td>{{ $permission->name }}</td>
-                                        <td>{{ $permission->guard_name }}</td>
-                                        <td>{{ $permission->created_at }}</td>
+                                        <td>{{ $post->id }}</td>
+                                        <td>{{ $post->name }}</td>
+                                        <td>{{ $post->guard_name }}</td>
+                                        <td>{{ $post->created_at }}</td>
                                         <td class="td-actions text-right">
-                                            <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
-                                            <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
+                                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
+                                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
                                             
-                                            <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este permiso?')">
+                                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este post?')">
                                             @csrf
                                             @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">
@@ -70,7 +70,7 @@
                     </div>
                     
                     <div class="card-footer py-4">
-                        {{ $permissions->links() }}
+                        {{ $posts->links() }}
                     </div>
                 </div>
             </div>

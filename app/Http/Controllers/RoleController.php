@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Spatie\Permission\Models\Role;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
 
 class RoleController extends Controller
 {
@@ -25,7 +28,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        $permissions = Permission::all()->pluck('name', 'id');
+        // dd($permissions);
+        return view('roles.create', compact('permissions'));
     }
 
     /**

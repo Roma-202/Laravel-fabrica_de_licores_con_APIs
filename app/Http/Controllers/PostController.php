@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Post;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::paginate(5);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,7 +36,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create($request->only('name'));
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -44,9 +46,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -55,20 +57,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id){
-        //
+    public function edit(Post $post){
+        return view('posts.edit', compact('post'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resourc e in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->only('name'));
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -77,8 +80,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

@@ -8,7 +8,7 @@
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Sign in with') }}</small></div>
+                        <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Registrate con') }}</small></div>
                         <div class="btn-wrapper text-center">
                             <a href="#" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img src="{{ asset('img/icons/common/github.svg') }}"></span>
@@ -50,7 +50,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('Username or Email') }}" type="text" name="username" value="{{ old('username') }}" required autofocus  autocomplete="username">
+                                    <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('Username o Email') }}" type="text" name="username" value="{{ old('username') }}" required autofocus  autocomplete="username">
                                 </div>
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -63,7 +63,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="secret" required  autocomplete="current-password">
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" placeholder="{{ __('Contraseña') }}"   required  autocomplete="current-password">
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -87,13 +87,13 @@
                     <div class="col-6">
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" class="text-light">
-                                <small>{{ __('Forgot password?') }}</small>
+                                <small>{{ __('Olvido su contraseña?') }}</small>
                             </a>
                         @endif
                     </div>
                     <div class="col-6 text-right">
                         <a href="{{ route('register') }}" class="text-light">
-                            <small>{{ __('Create new account') }}</small>
+                            <small>{{ __('Crear una cuenta') }}</small>
                         </a>
                     </div>
                 </div>

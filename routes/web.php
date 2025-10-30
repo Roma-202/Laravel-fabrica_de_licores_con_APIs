@@ -28,8 +28,8 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.delete');
-
-    //Agregar la ruta de POST aqui
-
+    //Roles y permisos con Spatie
     Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+    Route::resource('posts', App\Http\Controllers\PostController::class);
 });

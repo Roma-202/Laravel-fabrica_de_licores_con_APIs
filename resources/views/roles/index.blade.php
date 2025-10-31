@@ -38,7 +38,8 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Guard</th>
-                                <th>Created_at</th>
+                                <th>Fecha de creacion</th>
+                                <th>Persmisos</th>
                                 <th class="text-right">Acciones</th>
                             </thead>
                             <tbody>
@@ -48,6 +49,13 @@
                                         <td>{{ $role->name }}</td>
                                         <td>{{ $role->guard_name }}</td>
                                         <td>{{ $role->created_at }}</td>
+                                        <td>
+                                            @forelse ($role->permissions as $permission)
+                                                <span class="badge badge-info">{{ $permission->name }}</span>
+                                            @empty
+                                                <span class="badge badge-danger">No permission added</span>
+                                            @endforelse
+                                        </td>
                                         <td class="td-actions text-right">
                                             <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
                                             <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>

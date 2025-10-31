@@ -41,7 +41,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        Role::create($request->only('name'));
+        $role = Role::create($request->only('name'));
+        $role->permissions()->sync($request->input('permissions', []));
         return redirect()->route('roles.index');
     }
 
@@ -64,7 +65,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+        $permissions = Permission::all()->pluck('name','id');
+        $role->load('permissions');
+        return view('roles.edit', compact('role', 'permissions'));
     }
 
     /**

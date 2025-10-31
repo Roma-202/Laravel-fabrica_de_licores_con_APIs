@@ -49,6 +49,37 @@
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
                                 </div>
+
+                                <div class="form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="name">{{ __('Permisos') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            @foreach ($permissions as $id => $permission)
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <div
+                                                                                class="custom-control custom-checkbox mb-3">
+                                                                                <input type="checkbox" class="form-check-input" name="permissions[]" 
+                                                                                value="{{ $id }}" {{ $role->permissions->contains($id) ? 'checked' : ''}}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{ $permission }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </form>
                     </div>

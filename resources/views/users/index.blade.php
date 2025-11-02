@@ -27,7 +27,9 @@
                                 <h3 class="mb-0">Usuarios</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Añadir Usuario</a>
+                                @can('user_create')
+                                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Añadir Usuario</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -45,7 +47,7 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Username</th>
-                                <th>Created_at</th>
+                                <th>Roles</th>
                                 <th class="text-right">Acciones</th>
                             </thead>
                             <tbody>
@@ -55,19 +57,29 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->username }}</td>
-                                        <td>{{ $user->created_at }}</td>
+                                        <td>
+                                            @forelse ($user->roles as $role)
+                                                <span class="badge badge-info">{{ $role->name }}</span>
+                                            @empty
+                                                <span class="badge badge-danger">No roles</span>
+                                            @endforelse
+                                        </td>
                                         <td class="td-actions text-right">
-                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
-                                            
-                                            <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar a este usuario?')">
-                                            @csrf
-                                            @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                            
+                                            @can('user_show')
+                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
+                                            @endcan
+                                            @can('user_edit')
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
+                                            @endcan
+                                            @can('user_destroy')
+                                                <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar a este usuario?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

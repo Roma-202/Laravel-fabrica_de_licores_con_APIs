@@ -27,7 +27,9 @@
                                 <h3 class="mb-0">Usuarios</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-primary">Añadir Permiso</a>
+                                @can('permission_create')
+                                    <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-primary">Añadir Permiso</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -49,17 +51,21 @@
                                         <td>{{ $permission->guard_name }}</td>
                                         <td>{{ $permission->created_at }}</td>
                                         <td class="td-actions text-right">
-                                            <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
-                                            <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
-                                            
-                                            <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este permiso?')">
-                                            @csrf
-                                            @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                            
+                                            @can('permission_show')
+                                                <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
+                                            @endcan
+                                            @can('permission_edit')
+                                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
+                                            @endcan
+                                            @can('permission_destroy')
+                                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este permiso?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

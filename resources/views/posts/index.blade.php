@@ -27,7 +27,9 @@
                                 <h3 class="mb-0">Posts</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('posts.create') }}" class="btn btn-sm btn-primary">Añadir Post</a>
+                                @can('post_create')
+                                    <a href="{{ route('posts.create') }}" class="btn btn-sm btn-primary">Añadir Post</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -49,17 +51,21 @@
                                         <td>{{ $post->guard_name }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td class="td-actions text-right">
-                                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
-                                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
-                                            
-                                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este post?')">
-                                            @csrf
-                                            @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                            
+                                            @can('post_show')
+                                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
+                                            @endcan
+                                            @can('post_edit')
+                                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
+                                            @endcan
+                                            @can('post_destroy')
+                                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este post?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

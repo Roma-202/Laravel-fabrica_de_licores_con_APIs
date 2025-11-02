@@ -18,7 +18,7 @@
 
     <div class="container-fluid mt--7">
         <div class="row">
-            
+
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
@@ -80,7 +80,7 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="password">{{ __('New Password') }}</label>
                                     <input type="password" name="password" id="password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Contrasena') }}" value="" >
-                                    
+
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -88,15 +88,49 @@
                                     @endif
                                 </div>
 
+
+                                
+                            <div class="form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="name">{{ __('Permisos') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            @foreach ($roles as $id => $role)
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <div
+                                                                                class="custom-control custom-checkbox mb-3">
+                                                                                <input type="checkbox" class="form-check-input" name="roles[]"
+                                                                                value="{{ $id }}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{ $role }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
+
+
                         </form>
 
 
 
-                        
+
                         {{-- <hr class="my-4" />
                         <form method="post" action="#" autocomplete="off">
                             @csrf
@@ -117,7 +151,7 @@
                                 <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="current-password">{{ __('Current Password') }}</label>
                                     <input type="password" name="old_password" id="current-password" class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Password') }}" value="" required>
-                                    
+
                                     @if ($errors->has('old_password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('old_password') }}</strong>
@@ -127,7 +161,7 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="password">{{ __('New Password') }}</label>
                                     <input type="password" name="password" id="password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
-                                    
+
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -148,7 +182,7 @@
                 </div>
             </div>
         </div>
-        
+
         @include('layouts.footers.auth')
     </div>
 @endsection

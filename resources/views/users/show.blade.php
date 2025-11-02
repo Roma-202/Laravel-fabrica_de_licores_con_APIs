@@ -42,6 +42,17 @@
                             <div class="text-muted mb-1">{{ $user->username }}</div>
                             <div class="text-muted mb-1">{{ $user->email }}</div>
                             <small class="text-muted">{{ $user->created_at->format('d/m/Y') }}</small>
+
+                            <hr class="my-4" />
+
+                            @forelse ($user->roles as $role)
+                                <span class="badge rounded-pill bg-dark text-white">{{ $role->name }}</span>
+                            @empty
+                                <span class="badge badge-danger bg-danger text-white">No roles</span>
+                            @endforelse
+
+                            
+
                         </div>
                         
                         <hr class="my-4" />

@@ -7,10 +7,10 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('img/brand/logo-partyFuel.png') }}" alt="..." class="navbar-brand-img">
+            <img src="{{ asset('img/brand/logo_partyFuel.png') }}" alt="..." class="navbar-brand-img">
         </a>
         <!-- User -->
-        <ul class="nav align-items-center d-md-none">
+        {{-- <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
@@ -49,7 +49,7 @@
                     </a>
                 </div>
             </li>
-        </ul>
+        </ul> --}}
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <!-- Collapse header -->
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Form -->
+            {{-- <!-- Form -->
             <form class="mt-4 mb-3 d-md-none">
                 <div class="input-group input-group-rounded input-group-merge">
                     <input type="search" class="form-control form-control-rounded form-control-prepended"
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> --}}
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -89,6 +89,7 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+                {{-- Menu de control de usuarios --}}
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="navbar-examples">
@@ -98,69 +99,52 @@
 
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">
-                                    <i class="fas fa-user text-blue"></i> {{ __('Usuarios') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('permissions.index') }}">
-                                    <i class="ni ni-badge text-blue"></i> {{ __('Permisos') }}
-                                </a>
-                            </li>
+                            @can('user_index')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('users.index') }}">
+                                        <i class="fas fa-user text-blue"></i> {{ __('Usuarios') }}
+                                    </a>
+                                </li>
+                            @endcan     
+                            @can('rol_index')                   
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('roles.index') }}">
                                     <i class="fas fa-list text-blue"></i> {{ __('Roles') }}
                                     
                                 </a>
                             </li>
+                            @endcan 
+                            @can('permission_index')                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('permissions.index') }}">
+                                    <i class="ni ni-badge text-blue"></i> {{ __('Permisos') }}
+                                </a>
+                            </li>
+                            @endcan
                         </ul>
                     </div>
                 </li>
 
-
+                {{-- Menu de control de bebidas --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
                         <i class="fas fa-wine-glass text-blue"></i> {{ __('Bebidas') }}
                         
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-cart text-default"></i>
-                        <span class="nav-link-text">Tables</span>
-                    </a>
-                </li>
+            </ul>
+
+            <!-- Heading -->
+            <h6 class="navbar-heading text-muted">otros</h6>
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-3">
+                @can('post_index') 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.index') }}">
                         <i class="ni ni-tag text-pink"></i> {{ __('Post') }}
                     </a>
-                </li> 
-            </ul>
-            <!-- Divider -->
-            <hr class="my-3">
-            <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Documentation</h6>
-            <!-- Navigation -->
-            <ul class="navbar-nav mb-md-3">
-                <li class="nav-item">
-                    <a class="nav-link"
-                        href="https://argon-dashboard-laravel.creative-tim.com/docs/getting-started/overview.html">
-                        <i class="ni ni-spaceship"></i> Getting started
-                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                        href="https://argon-dashboard-laravel.creative-tim.com/docs/foundation/colors.html">
-                        <i class="ni ni-palette"></i> Foundation
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                        href="https://argon-dashboard-laravel.creative-tim.com/docs/components/alerts.html">
-                        <i class="ni ni-ui-04"></i> Components
-                    </a>
-                </li>
+                @endcan
             </ul>
         </div>
     </div>

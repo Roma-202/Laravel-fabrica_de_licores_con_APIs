@@ -40,7 +40,14 @@
                         
                         <hr class="my-4" />
 
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla corporis veniam ipsam dolorum nesciunt repudiandae ratione nostrum ipsum id consectetur</p>
+                        {{-- <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla corporis veniam ipsam dolorum nesciunt repudiandae ratione nostrum ipsum id consectetur</p> --}}
+                        @forelse ($role->permissions as $permission)
+                            <span class="badge rounded-pill bg-dark text-white">{{ $permission->name }}</span>
+                        @empty
+                            <span class="badge badge-danger bg-danger">No permissions</span>
+                        @endforelse
+
+                        <hr class="my-4" />
 
                         <div class="d-flex justify-content-center">
                             {{-- <button type="button" class="btn btn-primary">Editar</button> --}}

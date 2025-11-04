@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('img/brand/blue.png') }}">
+                            <img src="{{ asset('img/brand/logo_partyFuel.png') }}">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -106,7 +106,7 @@
                                     </a>
                                 </li>
                             @endcan     
-                            @can('rol_index')                   
+                            @can('role_index')                   
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('roles.index') }}">
                                     <i class="fas fa-list text-blue"></i> {{ __('Roles') }}
@@ -142,6 +142,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.index') }}">
                         <i class="ni ni-tag text-pink"></i> {{ __('Post') }}
+                    </a>
+                </li>
+                @endcan
+                @can('post_index') 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('activity_logs.index') }}">
+                        <i class="ni ni-tag text-pink"></i> {{ __('Activity Logs') }}
                     </a>
                 </li>
                 @endcan

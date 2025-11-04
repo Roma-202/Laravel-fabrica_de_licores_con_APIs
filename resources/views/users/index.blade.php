@@ -48,6 +48,7 @@
                                 <th>Correo</th>
                                 <th>Username</th>
                                 <th>Roles</th>
+                                <th>Permisos Extras</th>
                                 <th class="text-right">Acciones</th>
                             </thead>
                             <tbody>
@@ -62,6 +63,13 @@
                                                 <span class="badge badge-info">{{ $role->name }}</span>
                                             @empty
                                                 <span class="badge badge-danger">No roles</span>
+                                            @endforelse
+                                        </td>
+                                        <td>
+                                            @forelse ($user->permissions as $permission)
+                                                <span class="badge badge-info">{{ $permission->name }}</span>
+                                            @empty
+                                                <span class="badge badge-danger">Sin permisos extras</span>
                                             @endforelse
                                         </td>
                                         <td class="td-actions text-right">

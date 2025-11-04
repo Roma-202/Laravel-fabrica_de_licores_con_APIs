@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserCreateRequest;
@@ -21,7 +22,8 @@ class UserController extends Controller
     {
         abort_if(Gate::denies('user_create'), 403);
         $roles = Role::all()->pluck('name', 'id');
-        return view('users.create', compact('roles'));
+        $permissions = Permission::all()->pluck('name', 'id');
+        return view('users.create', compact('roles',  'permissions'));
     }
 
     public function store(UserCreateRequest $request){
@@ -38,6 +40,10 @@ class UserController extends Controller
 
         $roles =$request->input('roles', []);
         $user->roles()->sync($roles);
+
+        $permissions =$request->input('permissions', []);
+        $user->permissions()->sync($permissions);
+
         return redirect()->route('users.show', $user->id)->with('success', 'Usuario creado correctamente');
     }
 
@@ -52,7 +58,11 @@ class UserController extends Controller
         abort_if(Gate::denies('user_edit'), 403);
         $roles = Role::all()->pluck('name', 'id');
         $user->load('roles');
-        return view('users.edit', compact('user', 'roles'));
+
+        $permissions = Permission::all()->pluck('name', 'id');
+        $user->load('permissions');
+
+        return view('users.edit', compact('user', 'roles', 'permissions'));
     }
 
     public function update(UserEditRequest $request, User $user){
@@ -73,6 +83,10 @@ class UserController extends Controller
         $user->update($data);
         $roles = $request->input('roles', []);
         $user->roles()->sync($roles);
+
+        $permissions = $request->input('permissions', []);
+        $user->permissions()->sync($permissions);
+
         return redirect()->route('users.show', $user->id)->with('success', 'Usuario actualizado correctamente');
     }
 

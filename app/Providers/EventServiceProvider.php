@@ -7,6 +7,8 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use Spatie\Activitylog\Models\Activity;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -27,6 +29,13 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Esto se ejecuta ANTES de guardar cada log
+        Activity::saving(function (Activity $activity) {
+            // Captura al usuario autenticado
+            if (auth()->check()) {
+                $activity->causer_id = auth()->id();
+                $activity->causer_type = get_class(auth()->user());
+            }
+        });
     }
 }

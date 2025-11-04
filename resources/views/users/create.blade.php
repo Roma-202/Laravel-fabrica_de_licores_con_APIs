@@ -46,7 +46,7 @@
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="name">{{ __('Name') }}</label>
+                                    <label class="form-control-label" for="name">{{ __('Nombre') }}</label>
                                     <input type="text" name="name" id="name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Ingrese su nombre') }}" value="{{ old('name') }}" autofocus>
 
                                     @if ($errors->has('name'))
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="username">{{ __('Username') }}</label>
+                                    <label class="form-control-label" for="username">{{ __('Nombre de usuario') }}</label>
                                     <input type="text" name="username" id="username" class="form-control form-control-alternative{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('Ingrese su nombre de usuario') }}" value="{{ old('username') }}"  >
 
                                     @if ($errors->has('username'))
@@ -78,7 +78,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="password">{{ __('New Password') }}</label>
+                                    <label class="form-control-label" for="password">{{ __('Contraseña') }}</label>
                                     <input type="password" name="password" id="password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Contrasena') }}" value="" >
 
                                     @if ($errors->has('password'))
@@ -88,10 +88,10 @@
                                     @endif
                                 </div>
 
-
+                            
                                 
                             <div class="form-group{{ $errors->has('rol') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="name">{{ __('Permisos') }}</label>
+                                    <label class="form-control-label" for="name">{{ __('Roles') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">
                                             <div class="tab-content">
@@ -110,6 +110,36 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>{{ $role }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('permission') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="name">{{ __('Permisos') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            @foreach ($permissions as $id => $permission)
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <div
+                                                                                class="custom-control custom-checkbox mb-3">
+                                                                                <input type="checkbox" class="form-check-input" name="permissions[]"
+                                                                                value="{{ $id }}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{ $permission }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>

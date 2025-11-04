@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity; // ← Importa el trait
+use Spatie\Activitylog\LogOptions; // ← Importa LogOptions
+
+class User extends Authenticatable 
+{ 
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasPermissions, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -45,4 +49,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        /**
+     * Configuración de Activity Log
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            // Solo registra cambios en estos campos
+            ->logOnly(['name', 'email', 'username'])
+            
+            // Solo guarda si hubo cambios reales (no guarda si editas pero no cambias nada)
+            ->logOnlyDirty()
+            
+            // No crea un log vacío
+            ->dontSubmitEmptyLogs()
+            
+            // Personaliza el mensaje según la acción
+            ->setDescriptionForEvent(fn(string $eventName) => match($eventName) {
+                'created' => 'Usuario creado',
+                'updated' => 'Usuario actualizado',
+                'deleted' => 'Usuario eliminado',
+                default => "Usuario {$eventName}"
+            });
+    }
 }

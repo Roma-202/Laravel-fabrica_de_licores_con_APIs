@@ -127,7 +127,7 @@
 
                 {{-- Menu de control de bebidas --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">
+                    <a class="nav-link" href="{{ route('products.index') }}">
                         <i class="fas fa-wine-glass text-blue"></i> {{ __('Bebidas') }}
                         
                     </a>

@@ -1,8 +1,8 @@
-@extends('layouts.main', ['title' => __('Crear Permiso')])
+@extends('layouts.main', ['title' => __('Crear Post')])
 
 @section('content')
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-        style="background-image: url({{ asset('/img/theme/permisos-editar-agregar.jpg') }}); background-size: cover; background-position: center top;">
+        style="background-image: url({{ asset('/img/theme/post.jpg') }}); background-size: cover; background-position: center top;">
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
         <!-- Header container -->

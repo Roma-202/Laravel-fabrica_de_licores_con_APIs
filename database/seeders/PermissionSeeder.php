@@ -34,6 +34,12 @@ class PermissionSeeder extends Seeder
             'user_edit',
             'user_destroy',
 
+            'product_index',
+            'product_create',
+            'product_show',
+            'product_edit',
+            'product_destroy',
+
             'post_index',
             'post_create',
             'post_show',

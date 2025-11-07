@@ -51,7 +51,13 @@
                                 <span class="badge badge-danger bg-danger text-white">No roles</span>
                             @endforelse
 
-                            
+                            <hr class="my-4" />
+
+                            @forelse ($user->permissions as $permission)
+                                <span class="badge rounded-pill bg-dark text-white">{{ $permission->name }}</span>
+                            @empty
+                                <span class="badge badge-danger bg-danger text-white">Sin permisos extra</span>
+                            @endforelse
 
                         </div>
                         

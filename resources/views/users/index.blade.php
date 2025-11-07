@@ -17,90 +17,102 @@
     </div>
 
     <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h3 class="mb-0">Usuarios</h3>
-                            </div>
-                            <div class="col-4 text-right">
-                                @can('user_create')
-                                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Añadir Usuario</a>
-                                @endcan
-                            </div>
+       <div class="row">
+        <div class="col">
+            <div class="card shadow">
+            
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Usuarios</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                            @can('user_create')
+                                <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Añadir Usuario</a>
+                            @endcan
                         </div>
                     </div>
-                    {{-- Mensaje de exito de ingreso de un nuevo usuario --}}
-                    @if (session('success'))
-                        <div class="alert alert-success" role="success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                </div>
+                {{-- Mensaje de exito de ingreso de un nuevo usuario --}}
+                @if (session('success'))
+                    <div class="alert alert-success" role="success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Username</th>
-                                <th>Roles</th>
-                                <th>Permisos Extras</th>
-                                <th class="text-right">Acciones</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->username }}</td>
-                                        <td>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Username</th>
+                            <th style="min-width: 150px;">Roles</th>
+                            <th style="min-width: 200px;">Permisos Extras</th>
+                            <th class="text-right">Acciones</th>
+                        </thead>
+                        <tbody>
+                            @forelse ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 5px; max-width: 200px;">
                                             @forelse ($user->roles as $role)
                                                 <span class="badge badge-info">{{ $role->name }}</span>
                                             @empty
                                                 <span class="badge badge-danger">No roles</span>
                                             @endforelse
-                                        </td>
-                                        <td>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 5px; max-width: 300px;">
                                             @forelse ($user->permissions as $permission)
                                                 <span class="badge badge-info">{{ $permission->name }}</span>
                                             @empty
-                                                <span class="badge badge-danger">Sin permisos extras</span>
+                                                <span class="badge badge-secondary">Sin permisos extras</span>
                                             @endforelse
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            @can('user_show')
-                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
-                                            @endcan
-                                            @can('user_edit')
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
-                                            @endcan
-                                            @can('user_destroy')
-                                                <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar a este usuario?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            @endcan
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="card-footer py-4">
-                        {{ $users->links() }}
-                    </div>
+                                        </div>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        @can('user_show')
+                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">
+                                                <i class="ni ni-single-02 text-white"></i>
+                                            </a>
+                                        @endcan
+                                        @can('user_edit')
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-pen text-white"></i>
+                                            </a>
+                                        @endcan
+                                        @can('user_destroy')
+                                            <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar a este usuario?')">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No hay usuarios registrados</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="card-footer py-4">
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
+</div>
         
         @include('layouts.footers.auth')
     </div>

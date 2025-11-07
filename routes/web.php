@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,4 +39,34 @@ Route::group(['middleware'=> 'auth'], function(){
 
     Route::resource('activity_logs', App\Http\Controllers\ActivityLogController::class);
 
+});
+
+
+Route::get('/login-google', function () {
+    return Socialite::driver('google')->redirect();
+});
+ 
+Route::get('/google-callback', function () {
+    $user = Socialite::driver('google')->user();
+    
+    $userExists = User::where('external_id', $user->id)->where('external_auth', 'google')->first();
+    
+    if($userExists){
+        Auth::login($userExists);
+    } else{
+        $userNew = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'username' => $user->name,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'google',
+        ]);
+
+        
+        $userNew->assignRole('user'); 
+
+        Auth::login($userNew);
+    }
+    return redirect('/posts');
 });

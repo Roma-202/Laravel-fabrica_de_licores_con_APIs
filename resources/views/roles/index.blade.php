@@ -41,7 +41,7 @@
                                 <th>Nombre</th>
                                 <th>Guard</th>
                                 <th>Fecha de creacion</th>
-                                <th>Persmisos</th>
+                                <th style="min-width: 200px;">Permisos</th>
                                 <th class="text-right">Acciones</th>
                             </thead>
                             <tbody>
@@ -52,21 +52,27 @@
                                         <td>{{ $role->guard_name }}</td>
                                         <td>{{ $role->created_at }}</td>
                                         <td>
-                                            @forelse ($role->permissions as $permission)
-                                                <span class="badge badge-info">{{ $permission->name }}</span>
-                                            @empty
-                                                <span class="badge badge-danger">No permission added</span>
-                                            @endforelse
+                                            <div style="display: flex; flex-wrap: wrap; gap: 5px; max-width: 300px;">
+                                                @forelse ($role->permissions as $permission)
+                                                    <span class="badge badge-info">{{ $permission->name }}</span>
+                                                @empty
+                                                    <span class="badge badge-danger">No permission added</span>
+                                                @endforelse
+                                            </div>
                                         </td>
                                         <td class="td-actions text-right">
                                             @can('role_show')
-                                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info btn-sm"><i class="ni ni-single-02 text-white"></i></a>
+                                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="ni ni-single-02 text-white"></i>
+                                                </a>
                                             @endcan
                                             @can('role_edit')
-                                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
+                                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-pen text-white"></i>
+                                                </a>
                                             @endcan
                                             @can('role_destroy')
-                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este permiso?')">
+                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro que quieres eliminar este rol?')">
                                                 @csrf
                                                 @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">
@@ -77,7 +83,9 @@
                                         </td>
                                     </tr>
                                 @empty
-                                .   No hay permisos registrados
+                                    <tr>
+                                        <td colspan="6" class="text-center">No hay roles registrados</td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

@@ -143,18 +143,20 @@
                                 {{ $product->estado }}
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">
-                                <div class="media align-items-center">
-                                    <div class="media-body">
-                                        <span class="mb-0 text-sm">Descripcion</span>
-                                    </div>
-                                </div>
-                            </th>
-                            <td>
-                                {{ $product->descripcion }}
-                            </td>
-                        </tr>
+                       <tr>
+    <th scope="row">
+        <div class="media align-items-center">
+            <div class="media-body">
+                <span class="mb-0 text-sm">Descripción</span>
+            </div>
+        </div>
+    </th>
+    <td>
+        <div style="max-width: 600px; word-wrap: break-word; white-space: normal;">
+            {{ $product->descripcion ?? 'Sin descripción' }}
+        </div>
+    </td>
+</tr>
                         
 
                     </tbody>

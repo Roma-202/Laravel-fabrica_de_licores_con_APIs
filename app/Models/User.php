@@ -27,6 +27,10 @@ class User extends Authenticatable
         'email',
         'username',
         'password',
+
+        'avatar',
+        'external_id',
+        'external_auth'
     ];
 
     //protected $guarded=[];

@@ -92,9 +92,9 @@ class UserController extends Controller
 
     public function destroy(User $user){
         abort_if(Gate::denies('user_destroy'), 403);
-        if(auth()->user()->id = $user->id){
-            return redirect()->route('users.index');
-        }
+        // if(auth()->user()->id = $user->id){
+        //     return redirect()->route('users.index');
+        // }
         $user->delete();
         return back()->with('success', 'Usuario eliminado correctamente');
     }

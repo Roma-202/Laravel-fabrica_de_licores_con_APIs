@@ -63,7 +63,16 @@
                                         <td>{{ $product->fecha_produccion }}</td>
                                         <td>{{ $product->lote }}</td>
                                         <td>{{ $product->estado }}</td>
-                                        <td>{{ $product->descripcion }}</td>
+                                        <td>
+                                             @if($product->descripcion)
+                                                <div style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" 
+                                                    title="{{ $product->descripcion }}">
+                                                    {{ Str::limit($product->descripcion, 50) }}
+                                                </div>
+                                            @else
+                                                <span class="text-muted"><em>Sin descripción</em></span>
+                                            @endif
+                                        </td>
                                         <td class="td-actions text-right">
                                             @can('product_show')
                                                 <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm"><i class="fas fa-wine-glass text-white"></i></a>

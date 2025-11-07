@@ -7,9 +7,9 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Party Fuel') }}</title>
+        <title>Party Fuel Factory</title>
         <!-- Favicon -->
-        <link href="{{ asset('/img/brand/favicon.png') }}" rel="icon" type="image/png">
+        <link href="{{ asset('/img/brand/icono.ico') }}" rel="icon" type="image/png">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Extra details for Live View on GitHub Pages -->

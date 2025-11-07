@@ -69,7 +69,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                .   No hay permisos registrados
+                                .   No hay posts registrados
                                 @endforelse
                             </tbody>
                         </table>

@@ -167,7 +167,7 @@
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href="{{ route('products.index') }}" class="btn btn-m btn-success mr-3">Volver</a>
-                                <a href="#" class="btn btn-m btn-primary mr-3">Editar</a>
+                                {{-- <a href="#" class="btn btn-m btn-primary mr-3">Editar</a> --}}
                             </div>
                         </td>
                     </tbody>

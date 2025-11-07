@@ -52,7 +52,7 @@
                         <div class="d-flex justify-content-center">
                             {{-- <button type="button" class="btn btn-primary">Editar</button> --}}
                             <a href="{{ route('roles.index') }}" class="btn btn-m btn-success mr-3">Volver</a>
-                            <a href="#" class="btn btn-m btn-primary mr-3">Editar</a>
+                            {{-- <a href="#" class="btn btn-m btn-primary mr-3">Editar</a> --}}
                         </div>
                     </div>
                 </div>
